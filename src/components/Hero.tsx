@@ -41,12 +41,12 @@ export default function Hero() {
                     </div>
                 </div>
                 <div className={styles.ctas}>
-                    <Link href="#test" className="btn-primary">
+                    <a href="#test" className="btn-primary">
                         Start Typing
-                    </Link>
-                    <Link href="#leaderboard" className="btn-secondary">
+                    </a>
+                    <a href="#leaderboard" className="btn-secondary">
                         View Leaderboard
-                    </Link>
+                    </a>
                 </div>
                 <div className={styles.kittyWrapper}>
                     <div className={styles.kittyBubble}>
