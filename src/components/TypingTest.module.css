@@ -164,20 +164,24 @@
 }
 
 .correct {
-    color: var(--pink-400);
+    color: #4ade80;
+    /* Soft green */
 }
 
 .wrong {
-    color: #e84040;
+    color: var(--pink-700);
+    /* Dark pink */
 }
 
 /* Character-level highlighting */
 .charCorrect {
-    color: var(--pink-400);
+    color: #4ade80;
+    /* Soft green */
 }
 
 .charWrong {
-    color: #e84040;
+    color: var(--pink-700);
+    /* Dark pink */
     text-decoration: underline;
     text-decoration-style: wavy;
 }
