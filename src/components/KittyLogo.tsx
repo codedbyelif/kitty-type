@@ -9,8 +9,8 @@ export default function KittyLogo({ size = 48 }: Props) {
         <Image
             src="/Adsız tasarım.png"
             alt="Kitty Logo"
-            width={size}
-            height={size}
+            width={size * 1.75}
+            height={size * 1.75}
             style={{ objectFit: "contain", display: "inline-flex", justifyContent: "center", alignItems: "center" }}
         />
     );
