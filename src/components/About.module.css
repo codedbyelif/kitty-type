@@ -20,22 +20,24 @@
 
 .heading {
     font-family: var(--font-display);
-    font-size: 2.2rem;
+    font-size: 3rem;
     color: var(--dark);
-    max-width: 600px;
+    max-width: 800px;
     margin: 0 auto 8px;
     line-height: 1.2;
 }
 
 .sub {
     color: var(--muted);
+    font-size: 1.2rem;
 }
 
 .grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 24px;
-    margin-bottom: 64px;
+    max-width: 1000px;
+    margin: 0 auto 64px;
 }
 
 .card {
@@ -77,6 +79,8 @@
     border-radius: var(--radius-lg);
     padding: 4px;
     box-shadow: var(--shadow-lg);
+    max-width: 1000px;
+    margin: 0 auto;
 }
 
 .ctaInner {
