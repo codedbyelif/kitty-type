@@ -122,3 +122,80 @@
     color: var(--muted);
     font-size: 0.85rem;
 }
+
+/* Filter tabs */
+.filters {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+}
+
+.filterPill {
+    border: 2px solid var(--pink-200);
+    background: white;
+    border-radius: 99px;
+    padding: 8px 20px;
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.filterPill:hover {
+    border-color: var(--pink-400);
+    color: var(--pink-500);
+}
+
+.filterActive {
+    background: linear-gradient(135deg, var(--pink-400), var(--pink-600));
+    border-color: transparent;
+    color: white;
+    box-shadow: var(--shadow-sm);
+}
+
+/* Loading */
+.loadingBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    padding: 48px;
+    color: var(--muted);
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.spinner {
+    display: block;
+    width: 36px;
+    height: 36px;
+    border: 3px solid var(--pink-100);
+    border-top-color: var(--pink-500);
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+}
+
+.mockNote {
+    text-align: center;
+    color: var(--pink-400);
+    font-size: 0.85rem;
+    font-style: italic;
+    margin-top: 12px;
+}
+
+.rankVal {
+    font-size: 1.2rem;
+}
+
+.dateCell {
+    color: var(--muted);
+    font-size: 0.85rem;
+}
