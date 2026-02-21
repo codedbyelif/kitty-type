@@ -8,21 +8,36 @@ import Results from "@/components/Results";
 import Leaderboard from "@/components/Leaderboard";
 import About from "@/components/About";
 import Footer from "@/components/Footer";
+import { saveTestResult } from "@/lib/db";
 
 interface TestResults {
   wpm: number;
   accuracy: number;
   correctChars: number;
   totalChars: number;
-  time: number;
+  time: 15 | 30 | 60;
+  difficulty: "easy" | "medium" | "hard";
 }
 
 export default function Home() {
   const [results, setResults] = useState<TestResults | null>(null);
   const [testKey, setTestKey] = useState(0);
 
-  const handleFinish = (r: TestResults) => {
+  const handleFinish = async (r: TestResults) => {
     setResults(r);
+
+    try {
+      await saveTestResult({
+        wpm: r.wpm,
+        accuracy: r.accuracy,
+        correct_chars: r.correctChars,
+        total_chars: r.totalChars,
+        difficulty: r.difficulty,
+        duration: r.time,
+      });
+    } catch (err) {
+      console.error("Failed to save result:", err);
+    }
   };
 
   const handleRetry = () => {

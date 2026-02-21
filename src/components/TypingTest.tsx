@@ -13,14 +13,15 @@ interface Results {
     accuracy: number;
     correctChars: number;
     totalChars: number;
-    time: number;
+    time: 15 | 30 | 60;
+    difficulty: Difficulty;
 }
 
-const DURATIONS = [15, 30, 60];
+const DURATIONS = [15, 30, 60] as const;
 
 export default function TypingTest({ onFinish }: { onFinish: (r: Results) => void }) {
     const [difficulty, setDifficulty] = useState<Difficulty>("medium");
-    const [duration, setDuration] = useState(30);
+    const [duration, setDuration] = useState<15 | 30 | 60>(30);
     const [lang, setLang] = useState<Language>("en");
     const [words, setWords] = useState<string[]>([]);
     const [typed, setTyped] = useState("");
@@ -70,7 +71,7 @@ export default function TypingTest({ onFinish }: { onFinish: (r: Results) => voi
             const wpm = Math.round((correctChars / 5) / (duration / 60));
             const totalTyped = correctChars + charErrors;
             const accuracy = totalTyped ? Math.round((correctChars / totalTyped) * 100) : 0;
-            onFinish({ wpm, accuracy, correctChars, totalChars: totalTyped, time: duration });
+            onFinish({ wpm, accuracy, correctChars, totalChars: totalTyped, time: duration, difficulty });
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [gameState]);
