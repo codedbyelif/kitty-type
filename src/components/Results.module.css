@@ -1,0 +1,138 @@
+.overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    background: rgba(45, 27, 37, 0.6);
+    backdrop-filter: blur(6px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    animation: bounce-in 0.4s ease;
+}
+
+.card {
+    background: white;
+    border-radius: var(--radius-lg);
+    padding: 48px 40px;
+    max-width: 560px;
+    width: 100%;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow-lg), 0 0 0 3px var(--pink-200);
+    animation: bounce-in 0.4s ease;
+}
+
+/* Top pink gradient bar */
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, var(--pink-300), var(--pink-500), var(--pink-300));
+    background-size: 200%;
+    animation: shimmer 2s linear infinite;
+}
+
+/* Confetti */
+.confetti {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 80px;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+@keyframes confetti-fall {
+    0% {
+        transform: translateY(-20px) rotate(0deg);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(80px) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+.confettiPiece {
+    position: absolute;
+    font-size: 1.2rem;
+    animation: confetti-fall 2s ease-in calc(var(--i) * 0.25s) infinite;
+    left: calc(var(--i) * 12.5%);
+}
+
+.kittyTop {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 16px;
+}
+
+.rankBadge {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--pink-50);
+    border: 2px solid var(--pink-200);
+    border-radius: var(--radius-md);
+    padding: 14px 24px;
+    margin: 0 auto 28px;
+    width: fit-content;
+    text-align: left;
+}
+
+.rankEmoji {
+    font-size: 2.5rem;
+}
+
+.rankLabel {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    color: var(--pink-600);
+}
+
+.rankDesc {
+    font-size: 0.82rem;
+    color: var(--muted);
+    margin-top: 4px;
+}
+
+.statsGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 28px;
+}
+
+.stat {
+    background: var(--pink-50);
+    border-radius: var(--radius-md);
+    padding: 16px 8px;
+}
+
+.statValue {
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: var(--pink-500);
+}
+
+.statLabel {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--muted);
+    font-weight: 700;
+    margin-top: 4px;
+}
+
+.actions {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
