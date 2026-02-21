@@ -72,7 +72,7 @@ export default function Footer() {
                     </div>
 
                     <div className={styles.copy}>
-                        Made with ❤️ by <strong>codedbyelif</strong> &nbsp;·&nbsp; {new Date().getFullYear()}
+                        Made by <a href="https://github.com/codedbyelif" target="_blank" rel="noopener noreferrer" style={{ color: "inherit", textDecoration: "none", fontWeight: "bold" }}>codedbyelif</a> &nbsp;·&nbsp; {new Date().getFullYear()}
                     </div>
                 </div>
             </div>
