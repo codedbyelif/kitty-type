@@ -88,21 +88,8 @@ export default function TypingTest({ onFinish }: { onFinish: (r: Results) => voi
         if (value.endsWith(" ")) {
             const trimmed = value.trim();
             const isCorrect = trimmed === words[currentWordIndex];
-            setWordStatuses((prev) => {
-                const copy = [...prev];
-                copy[currentWordIndex] = isCorrect ? "correct" : "wrong";
-                return copy;
-            });
+
             if (isCorrect) {
-                setCorrectChars((c) => c + words[currentWordIndex].length + 1);
-            } else {
-                setCharErrors((c) => c + Math.abs(trimmed.length - words[currentWordIndex].length) + 1);
-            }
-            setCurrentWordIndex((i) => i + 1);
-            setTyped("");
-        } else {
-            // Auto-submit if exact match
-            if (value === words[currentWordIndex]) {
                 setWordStatuses((prev) => {
                     const copy = [...prev];
                     copy[currentWordIndex] = "correct";
@@ -112,8 +99,12 @@ export default function TypingTest({ onFinish }: { onFinish: (r: Results) => voi
                 setCurrentWordIndex((i) => i + 1);
                 setTyped("");
             } else {
-                setTyped(value);
+                // If incorrect, don't advance. Penalize by 1 error and remove the typed space.
+                setCharErrors((c) => c + 1);
+                setTyped(trimmed);
             }
+        } else {
+            setTyped(value);
         }
     };
 
