@@ -191,19 +191,6 @@ export default function TypingTest({ onFinish }: { onFinish: (r: Results) => voi
                     </div>
                 </div>
 
-                {/* Timer */}
-                <div className={styles.timerBox}>
-                    <div className={styles.timerTrack}>
-                        <div
-                            className={`${styles.timerFill} ${urgentTime ? styles.timerUrgent : ""}`}
-                            style={{ width: `${timerPercent}%` }}
-                        />
-                    </div>
-                    <div className={`${styles.timerNum} ${urgentTime ? styles.timerNumUrgent : ""}`}>
-                        {timeLeft}s
-                    </div>
-                </div>
-
                 {/* Word display */}
                 <div className={styles.wordBox} onClick={() => inputRef.current?.focus()}>
                     <div className={styles.words}>
@@ -218,51 +205,44 @@ export default function TypingTest({ onFinish }: { onFinish: (r: Results) => voi
                                 >
                                     {word.split("").map((char, ci) => {
                                         let charClass = "";
-                                        if (isActive) {
-                                            if (ci < typed.length) {
-                                                charClass = typed[ci] === char ? styles.charCorrect : styles.charWrong;
-                                            }
-                                            if (ci === typed.length) charClass = styles.charCursor;
+                                        if (isActive && ci < typed.length) {
+                                            charClass = typed[ci] === char ? styles.charCorrect : styles.charWrong;
                                         }
                                         return <span key={ci} className={charClass}>{char}</span>;
                                     })}
-                                    {isActive && typed.length === word.length && (
-                                        <span className={styles.charCursor} />
-                                    )}
                                 </span>
                             );
                         })}
                     </div>
-                    {gameState === "idle" && (
-                        <div className={styles.clickHint}>
-                            <KittyLogo size={28} />
-                            <span>Click here and start typing!</span>
-                        </div>
-                    )}
                 </div>
 
-                {/* Hidden input */}
-                <input
-                    ref={inputRef}
-                    className={styles.hiddenInput}
-                    value={typed}
-                    onChange={handleInput}
-                    disabled={gameState === "finished"}
-                    autoComplete="off"
-                    autoCorrect="off"
-                    autoCapitalize="none"
-                    spellCheck={false}
-                    onKeyDown={handleKeyDown}
-                    onKeyUp={handleKeyUp}
-                />
+                {/* Input Bar */}
+                <div className={styles.inputBar}>
+                    <input
+                        ref={inputRef}
+                        className={styles.visibleInput}
+                        value={typed}
+                        onChange={handleInput}
+                        disabled={gameState === "finished"}
+                        autoComplete="off"
+                        autoCorrect="off"
+                        autoCapitalize="none"
+                        spellCheck={false}
+                        onKeyDown={handleKeyDown}
+                        onKeyUp={handleKeyUp}
+                        dir="ltr"
+                    />
 
-                <div className={styles.actions}>
-                    <button className="btn-secondary" onClick={initGame}>
-                        Restart
+                    <div className={`${styles.timerBoxInline} ${urgentTime ? styles.timerUrgent : ""}`}>
+                        {Math.floor(timeLeft / 60)}:{(timeLeft % 60).toString().padStart(2, '0')}
+                    </div>
+
+                    <button className={styles.restartBtn} onClick={initGame} aria-label="Restart">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                            <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
+                            <path d="M3 3v5h5" />
+                        </svg>
                     </button>
-                    {gameState === "idle" && (
-                        <div className={styles.idleTip}>Press any key to start!</div>
-                    )}
                 </div>
             </div>
         </section>
