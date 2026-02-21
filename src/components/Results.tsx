@@ -12,12 +12,12 @@ interface ResultsProps {
     onRetry: () => void;
 }
 
-function getRank(wpm: number): { label: string; emoji: string; desc: string } {
-    if (wpm >= 120) return { label: "Kitty Legend", emoji: "👑", desc: "You type faster than a kitty's heartbeat!" };
-    if (wpm >= 80) return { label: "Super Paws", emoji: "⭐", desc: "Incredible speed — you're a typing superstar!" };
-    if (wpm >= 50) return { label: "Pretty Fast", emoji: "🎀", desc: "You're getting there, cutie!" };
-    if (wpm >= 30) return { label: "Kitten Level", emoji: "🐱", desc: "Keep practicing, little kitty!" };
-    return { label: "Baby Paws", emoji: "🐾", desc: "Every expert was once a beginner!" };
+function getRank(wpm: number): { label: string; icon: string; desc: string } {
+    if (wpm >= 120) return { label: "Kitty Legend", icon: "◆", desc: "You type faster than a kitty's heartbeat!" };
+    if (wpm >= 80) return { label: "Super Paws", icon: "★", desc: "Incredible speed — you're a typing superstar!" };
+    if (wpm >= 50) return { label: "Pretty Fast", icon: "♦", desc: "You're getting there, keep going!" };
+    if (wpm >= 30) return { label: "Kitten Level", icon: "♥", desc: "Keep practicing, little kitty!" };
+    return { label: "Baby Paws", icon: "♣", desc: "Every expert was once a beginner!" };
 }
 
 export default function Results({ wpm, accuracy, correctChars, totalChars, time, onRetry }: ResultsProps) {
@@ -27,10 +27,10 @@ export default function Results({ wpm, accuracy, correctChars, totalChars, time,
     return (
         <div className={styles.overlay}>
             <div className={styles.card}>
-                {/* Confetti decoration */}
+                {/* Decorative dots */}
                 <div className={styles.confetti}>
-                    {["🎀", "🌸", "⭐", "💕", "🎊", "🎀", "✨", "🌟"].map((e, i) => (
-                        <span key={i} className={styles.confettiPiece} style={{ "--i": i } as React.CSSProperties}>{e}</span>
+                    {Array.from({ length: 8 }).map((_, i) => (
+                        <span key={i} className={styles.confettiPiece} style={{ "--i": i } as React.CSSProperties} />
                     ))}
                 </div>
 
@@ -39,7 +39,7 @@ export default function Results({ wpm, accuracy, correctChars, totalChars, time,
                 </div>
 
                 <div className={styles.rankBadge}>
-                    <span className={styles.rankEmoji}>{rank.emoji}</span>
+                    <span className={styles.rankEmoji}>{rank.icon}</span>
                     <div>
                         <div className={styles.rankLabel}>{rank.label}</div>
                         <div className={styles.rankDesc}>{rank.desc}</div>
@@ -77,16 +77,16 @@ export default function Results({ wpm, accuracy, correctChars, totalChars, time,
 
                 <div className={styles.actions}>
                     <button className="btn-primary" onClick={onRetry}>
-                        🔄 Try Again
+                        Try Again
                     </button>
                     <button
                         className="btn-secondary"
                         onClick={() => {
-                            const text = `I just got ${wpm} WPM with ${accuracy}% accuracy on KittyType! 🐱🎀`;
-                            navigator.clipboard.writeText(text).then(() => alert("Copied to clipboard! Share your result 🎀"));
+                            const text = `I just got ${wpm} WPM with ${accuracy}% accuracy on KittyType!`;
+                            navigator.clipboard.writeText(text).then(() => alert("Copied to clipboard! Share your result."));
                         }}
                     >
-                        📋 Share Result
+                        Share Result
                     </button>
                 </div>
             </div>

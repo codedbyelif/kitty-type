@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef, useCallback } from "react";
-import { generateWordList } from "@/data/words";
+import { generateWordList, type Language } from "@/data/words";
 import styles from "./TypingTest.module.css";
 import KittyLogo from "./KittyLogo";
 
@@ -21,6 +21,7 @@ const DURATIONS = [15, 30, 60];
 export default function TypingTest({ onFinish }: { onFinish: (r: Results) => void }) {
     const [difficulty, setDifficulty] = useState<Difficulty>("medium");
     const [duration, setDuration] = useState(30);
+    const [lang, setLang] = useState<Language>("en");
     const [words, setWords] = useState<string[]>([]);
     const [typed, setTyped] = useState("");
     const [currentWordIndex, setCurrentWordIndex] = useState(0);
@@ -34,7 +35,7 @@ export default function TypingTest({ onFinish }: { onFinish: (r: Results) => voi
     const wordRefs = useRef<(HTMLSpanElement | null)[]>([]);
 
     const initGame = useCallback(() => {
-        const newWords = generateWordList(difficulty, 80);
+        const newWords = generateWordList(difficulty, lang, 80);
         setWords(newWords);
         setWordStatuses(new Array(80).fill("pending"));
         setTyped("");
@@ -44,7 +45,7 @@ export default function TypingTest({ onFinish }: { onFinish: (r: Results) => voi
         setCorrectChars(0);
         setGameState("idle");
         if (timerRef.current) clearInterval(timerRef.current);
-    }, [difficulty, duration]);
+    }, [difficulty, lang, duration]);
 
     useEffect(() => {
         initGame();
@@ -70,9 +71,9 @@ export default function TypingTest({ onFinish }: { onFinish: (r: Results) => voi
             const accuracy = totalTyped ? Math.round((correctChars / totalTyped) * 100) : 0;
             onFinish({ wpm, accuracy, correctChars, totalChars: totalTyped, time: duration });
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [gameState]);
 
-    // Auto-scroll active word into view
     useEffect(() => {
         const el = wordRefs.current[currentWordIndex];
         if (el) el.scrollIntoView({ block: "nearest", behavior: "smooth" });
@@ -80,11 +81,7 @@ export default function TypingTest({ onFinish }: { onFinish: (r: Results) => voi
 
     const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value;
-
-        if (gameState === "idle") {
-            setGameState("running");
-            startTimer();
-        }
+        if (gameState === "idle") { setGameState("running"); startTimer(); }
         if (gameState === "finished") return;
 
         if (value.endsWith(" ")) {
@@ -114,12 +111,30 @@ export default function TypingTest({ onFinish }: { onFinish: (r: Results) => voi
         <section className={styles.section} id="test">
             <div className="container">
                 <div className={styles.header}>
-                    <h2 className={styles.heading}>🐾 Typing Test</h2>
+                    <h2 className={styles.heading}>Typing Test</h2>
                     <p className={styles.sub}>Start typing to begin the test — space bar submits each word</p>
                 </div>
 
                 {/* Controls */}
                 <div className={styles.controls}>
+                    {/* Language toggle */}
+                    <div className={styles.controlGroup}>
+                        <label className={styles.controlLabel}>Language</label>
+                        <div className={styles.pills}>
+                            {(["en", "tr"] as Language[]).map((l) => (
+                                <button
+                                    key={l}
+                                    className={`${styles.pill} ${lang === l ? styles.pillActive : ""}`}
+                                    onClick={() => setLang(l)}
+                                    disabled={gameState === "running"}
+                                >
+                                    {l === "en" ? "EN" : "TR"}
+                                </button>
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* Difficulty */}
                     <div className={styles.controlGroup}>
                         <label className={styles.controlLabel}>Difficulty</label>
                         <div className={styles.pills}>
@@ -127,14 +142,16 @@ export default function TypingTest({ onFinish }: { onFinish: (r: Results) => voi
                                 <button
                                     key={d}
                                     className={`${styles.pill} ${difficulty === d ? styles.pillActive : ""}`}
-                                    onClick={() => { setDifficulty(d); }}
+                                    onClick={() => setDifficulty(d)}
                                     disabled={gameState === "running"}
                                 >
-                                    {d === "easy" ? "🌸 Easy" : d === "medium" ? "🎀 Medium" : "⭐ Hard"}
+                                    {d === "easy" ? "Easy" : d === "medium" ? "Medium" : "Hard"}
                                 </button>
                             ))}
                         </div>
                     </div>
+
+                    {/* Duration */}
                     <div className={styles.controlGroup}>
                         <label className={styles.controlLabel}>Time</label>
                         <div className={styles.pills}>
@@ -142,7 +159,7 @@ export default function TypingTest({ onFinish }: { onFinish: (r: Results) => voi
                                 <button
                                     key={d}
                                     className={`${styles.pill} ${duration === d ? styles.pillActive : ""}`}
-                                    onClick={() => { setDuration(d); }}
+                                    onClick={() => setDuration(d)}
                                     disabled={gameState === "running"}
                                 >
                                     {d}s
@@ -185,9 +202,7 @@ export default function TypingTest({ onFinish }: { onFinish: (r: Results) => voi
                                             }
                                             if (ci === typed.length) charClass = styles.charCursor;
                                         }
-                                        return (
-                                            <span key={ci} className={charClass}>{char}</span>
-                                        );
+                                        return <span key={ci} className={charClass}>{char}</span>;
                                     })}
                                     {isActive && typed.length === word.length && (
                                         <span className={styles.charCursor} />
@@ -199,7 +214,7 @@ export default function TypingTest({ onFinish }: { onFinish: (r: Results) => voi
                     {gameState === "idle" && (
                         <div className={styles.clickHint}>
                             <KittyLogo size={28} />
-                            <span>Click here and start typing! 🎀</span>
+                            <span>Click here and start typing!</span>
                         </div>
                     )}
                 </div>
@@ -219,7 +234,7 @@ export default function TypingTest({ onFinish }: { onFinish: (r: Results) => voi
 
                 <div className={styles.actions}>
                     <button className="btn-secondary" onClick={initGame}>
-                        🔄 Restart
+                        Restart
                     </button>
                     {gameState === "idle" && (
                         <div className={styles.idleTip}>Press any key to start!</div>

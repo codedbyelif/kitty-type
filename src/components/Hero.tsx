@@ -5,20 +5,20 @@ import KittyLogo from "./KittyLogo";
 export default function Hero() {
     return (
         <section className={styles.hero}>
-            {/* Floating decorative elements */}
-            <span className={`${styles.deco} ${styles.deco1}`}>🎀</span>
-            <span className={`${styles.deco} ${styles.deco2}`}>🐾</span>
-            <span className={`${styles.deco} ${styles.deco3}`}>⭐</span>
-            <span className={`${styles.deco} ${styles.deco4}`}>🌸</span>
-            <span className={`${styles.deco} ${styles.deco5}`}>💕</span>
+            {/* Floating decorative elements — kept as pure CSS shapes, no emoji */}
+            <span className={`${styles.deco} ${styles.deco1}`} />
+            <span className={`${styles.deco} ${styles.deco2}`} />
+            <span className={`${styles.deco} ${styles.deco3}`} />
+            <span className={`${styles.deco} ${styles.deco4}`} />
+            <span className={`${styles.deco} ${styles.deco5}`} />
 
             <div className={`container ${styles.content}`}>
                 <div className={styles.badge}>
-                    <span>🐱 Hello Kitty Approved</span>
+                    <span>Hello Kitty Approved</span>
                 </div>
                 <h1 className={styles.title}>
                     How Fast Are
-                    <span className={styles.titleHighlight}> Your Paws? 🐾</span>
+                    <span className={styles.titleHighlight}> Your Paws?</span>
                 </h1>
                 <p className={styles.subtitle}>
                     The cutest typing speed test in the universe. Measure your WPM,
@@ -42,7 +42,7 @@ export default function Hero() {
                 </div>
                 <div className={styles.ctas}>
                     <Link href="#test" className="btn-primary">
-                        Start Typing 🐱
+                        Start Typing
                     </Link>
                     <Link href="#leaderboard" className="btn-secondary">
                         View Leaderboard
@@ -52,7 +52,7 @@ export default function Hero() {
                     <div className={styles.kittyBubble}>
                         <KittyLogo size={120} />
                         <div className={styles.speechBubble}>
-                            Type fast, little kitty! 🎀
+                            Type fast, little kitty!
                         </div>
                     </div>
                 </div>
