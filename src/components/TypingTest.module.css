@@ -84,7 +84,7 @@
     align-items: center;
     gap: 16px;
     margin-bottom: 20px;
-    max-width: 860px;
+    max-width: 1000px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -124,7 +124,7 @@
 
 /* Word box */
 .wordBox {
-    max-width: 860px;
+    max-width: 1000px;
     margin: 0 auto 20px;
     background: white;
     border: 2px solid var(--pink-100);
@@ -215,7 +215,7 @@
 }
 
 .actions {
-    max-width: 860px;
+    max-width: 1000px;
     margin: 0 auto;
     display: flex;
     align-items: center;
