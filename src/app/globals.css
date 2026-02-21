@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Pacifico&display=swap');
 
 :root {
+  color-scheme: light;
   --pink-50: #fff9fc;
   --pink-100: #ffedf6;
   --pink-200: #ffe0ef;
