@@ -131,7 +131,7 @@
     border-radius: var(--radius-lg);
     padding: 28px;
     cursor: text;
-    min-height: 160px;
+    min-height: 220px;
     position: relative;
     box-shadow: var(--shadow-sm);
     transition: border-color 0.2s;
@@ -146,13 +146,13 @@
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
-    max-height: 130px;
+    max-height: 200px;
     overflow: hidden;
     user-select: none;
 }
 
 .word {
-    font-size: 1.15rem;
+    font-size: 1.3rem;
     font-weight: 600;
     color: var(--muted);
     transition: color 0.15s;
