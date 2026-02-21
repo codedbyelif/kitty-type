@@ -1,0 +1,124 @@
+.section {
+    padding: 80px 0;
+    background: linear-gradient(160deg, var(--cream) 0%, var(--pink-50) 100%);
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.badge {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--pink-400), var(--pink-600));
+    color: white;
+    border-radius: 99px;
+    padding: 6px 20px;
+    font-size: 0.85rem;
+    font-weight: 800;
+    margin-bottom: 12px;
+    letter-spacing: 0.3px;
+}
+
+.heading {
+    font-family: var(--font-display);
+    font-size: 2.2rem;
+    color: var(--dark);
+    margin-bottom: 8px;
+}
+
+.sub {
+    color: var(--muted);
+    font-size: 0.95rem;
+}
+
+.tableWrapper {
+    max-width: 800px;
+    margin: 0 auto;
+    background: white;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    border: 1.5px solid var(--pink-100);
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table thead tr {
+    background: linear-gradient(135deg, var(--pink-400), var(--pink-600));
+    color: white;
+}
+
+.table thead th {
+    padding: 16px 20px;
+    text-align: left;
+    font-size: 0.82rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+}
+
+.table tbody tr {
+    border-bottom: 1px solid var(--pink-50);
+    transition: background 0.15s;
+}
+
+.table tbody tr:hover {
+    background: var(--pink-50);
+}
+
+.table tbody tr:last-child {
+    border-bottom: none;
+}
+
+.top3 {
+    background: linear-gradient(90deg, var(--pink-50) 0%, transparent 100%) !important;
+}
+
+.table td {
+    padding: 15px 20px;
+    font-size: 0.95rem;
+}
+
+.rankCell {
+    font-weight: 700;
+}
+
+.medalEmoji {
+    font-size: 1.4rem;
+}
+
+.rankNum {
+    color: var(--muted);
+    font-size: 0.9rem;
+}
+
+.nameCell {
+    font-weight: 800;
+    color: var(--dark);
+}
+
+.wpmCell {
+    font-size: 1.1rem;
+    font-weight: 900;
+    color: var(--pink-500);
+}
+
+.accCell {
+    color: #22a849;
+    font-weight: 700;
+}
+
+.badgeCell {
+    font-size: 1.3rem;
+}
+
+.footer {
+    text-align: center;
+    margin-top: 20px;
+    color: var(--muted);
+    font-size: 0.85rem;
+}
