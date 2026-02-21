@@ -7,13 +7,7 @@ import type { LeaderboardEntry } from "@/lib/database.types";
 
 type Difficulty = "easy" | "medium" | "hard" | "all";
 
-const MOCK_SCORES = [
-    { rank: 1, username: "KittyQueen", wpm: 147, accuracy: 99 },
-    { rank: 2, username: "PinkPaws", wpm: 131, accuracy: 97 },
-    { rank: 3, username: "TypeKitty", wpm: 118, accuracy: 98 },
-    { rank: 4, username: "BowTyper", wpm: 105, accuracy: 96 },
-    { rank: 5, username: "HiMeow", wpm: 98, accuracy: 95 },
-];
+
 
 function getRankBadge(rank: number) {
     if (rank === 1) return "🥇";
@@ -30,7 +24,6 @@ export default function Leaderboard() {
     const [difficulty, setDifficulty] = useState<Difficulty>("all");
     const [scores, setScores] = useState<LeaderboardEntry[]>([]);
     const [loading, setLoading] = useState(true);
-    const [usingMock, setUsingMock] = useState(false);
 
     useEffect(() => {
         async function load() {
@@ -47,15 +40,12 @@ export default function Leaderboard() {
 
                 const { data, error } = await query;
 
-                if (error || !data || data.length === 0) {
-                    setUsingMock(true);
+                if (error || !data) {
                     setScores([]);
                 } else {
-                    setUsingMock(false);
                     setScores(data as LeaderboardEntry[]);
                 }
             } catch {
-                setUsingMock(true);
                 setScores([]);
             }
             setLoading(false);
@@ -63,9 +53,7 @@ export default function Leaderboard() {
         load();
     }, [difficulty]);
 
-    const displayScores = usingMock
-        ? MOCK_SCORES.filter((s) => difficulty === "all" || true)
-        : scores;
+
 
     return (
         <section className={styles.section} id="leaderboard">
@@ -103,20 +91,16 @@ export default function Leaderboard() {
                                     <th>Player</th>
                                     <th>WPM</th>
                                     <th>Accuracy</th>
-                                    {!usingMock && <th>Date</th>}
+                                    <th>Date</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {usingMock
-                                    ? MOCK_SCORES.map((entry) => (
-                                        <tr key={entry.rank} className={entry.rank <= 3 ? styles.top3 : ""}>
-                                            <td className={styles.rankCell}><span className={styles.rankVal}>{getRankBadge(entry.rank)}</span></td>
-                                            <td className={styles.nameCell}>{entry.username}</td>
-                                            <td className={styles.wpmCell}>{entry.wpm}</td>
-                                            <td className={styles.accCell}>{entry.accuracy}%</td>
-                                        </tr>
-                                    ))
-                                    : scores.map((entry, i) => (
+                                {scores.length === 0 ? (
+                                    <tr>
+                                        <td colSpan={5} style={{ textAlign: "center", padding: "20px" }}>No scores found for this difficulty yet. 🎀</td>
+                                    </tr>
+                                ) : (
+                                    scores.map((entry, i) => (
                                         <tr key={entry.id} className={i < 3 ? styles.top3 : ""}>
                                             <td className={styles.rankCell}><span className={styles.rankVal}>{getRankBadge(i + 1)}</span></td>
                                             <td className={styles.nameCell}>{entry.username}</td>
@@ -125,17 +109,13 @@ export default function Leaderboard() {
                                             <td className={styles.dateCell}>{formatDate(entry.played_at)}</td>
                                         </tr>
                                     ))
-                                }
+                                )}
                             </tbody>
                         </table>
                     )}
                 </div>
 
-                {usingMock && !loading && (
-                    <p className={styles.mockNote}>
-                        🎀 Example scores shown — connect Supabase to see real leaderboard data
-                    </p>
-                )}
+
                 <div className={styles.footer}>
                     <p>🎀 Scores refresh daily · Login to appear on the leaderboard</p>
                 </div>
