@@ -30,6 +30,7 @@ export default function TypingTest({ onFinish }: { onFinish: (r: Results) => voi
     const [timeLeft, setTimeLeft] = useState(30);
     const [charErrors, setCharErrors] = useState(0);
     const [correctChars, setCorrectChars] = useState(0);
+    const [capsWarning, setCapsWarning] = useState(false);
     const inputRef = useRef<HTMLInputElement>(null);
     const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
     const wordRefs = useRef<(HTMLSpanElement | null)[]>([]);
@@ -100,7 +101,31 @@ export default function TypingTest({ onFinish }: { onFinish: (r: Results) => voi
             setCurrentWordIndex((i) => i + 1);
             setTyped("");
         } else {
-            setTyped(value);
+            // Auto-submit if exact match
+            if (value === words[currentWordIndex]) {
+                setWordStatuses((prev) => {
+                    const copy = [...prev];
+                    copy[currentWordIndex] = "correct";
+                    return copy;
+                });
+                setCorrectChars((c) => c + words[currentWordIndex].length + 1);
+                setCurrentWordIndex((i) => i + 1);
+                setTyped("");
+            } else {
+                setTyped(value);
+            }
+        }
+    };
+
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        if (e.getModifierState) {
+            setCapsWarning(e.getModifierState("CapsLock"));
+        }
+    };
+
+    const handleKeyUp = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        if (e.getModifierState) {
+            setCapsWarning(e.getModifierState("CapsLock"));
         }
     };
 
@@ -112,8 +137,14 @@ export default function TypingTest({ onFinish }: { onFinish: (r: Results) => voi
             <div className="container">
                 <div className={styles.header}>
                     <h2 className={styles.heading}>Typing Test</h2>
-                    <p className={styles.sub}>Start typing to begin the test — space bar submits each word</p>
+                    <p className={styles.sub}>Type correctly to auto-space, or press spacebar to submit.</p>
                 </div>
+
+                {capsWarning && (
+                    <div className={styles.capsWarningBox}>
+                        ⚠️ Caps Lock is ON!
+                    </div>
+                )}
 
                 {/* Controls */}
                 <div className={styles.controls}>
@@ -230,6 +261,8 @@ export default function TypingTest({ onFinish }: { onFinish: (r: Results) => voi
                     autoCorrect="off"
                     autoCapitalize="none"
                     spellCheck={false}
+                    onKeyDown={handleKeyDown}
+                    onKeyUp={handleKeyUp}
                 />
 
                 <div className={styles.actions}>

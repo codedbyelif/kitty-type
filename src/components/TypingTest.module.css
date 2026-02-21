@@ -19,6 +19,20 @@
     font-size: 0.95rem;
 }
 
+.capsWarningBox {
+    background: #ffecf2;
+    color: #cc0000;
+    font-weight: 800;
+    text-align: center;
+    padding: 12px 24px;
+    border: 2px solid #ff4444;
+    border-radius: var(--radius-lg);
+    max-width: fit-content;
+    margin: 0 auto 24px;
+    font-size: 0.95rem;
+    animation: bounce-in 0.3s ease-out;
+}
+
 /* Controls */
 .controls {
     display: flex;
