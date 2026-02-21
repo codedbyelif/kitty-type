@@ -13,7 +13,6 @@ export default function SignupPage() {
     const [password, setPassword] = useState("");
     const [confirm, setConfirm] = useState("");
     const [error, setError] = useState("");
-    const [success, setSuccess] = useState(false);
     const [loading, setLoading] = useState(false);
     const router = useRouter();
     const supabase = createClient();
@@ -46,30 +45,10 @@ export default function SignupPage() {
             setError(error.message);
             setLoading(false);
         } else {
-            setSuccess(true);
+            router.push("/");
+            router.refresh();
         }
     };
-
-    if (success) {
-        return (
-            <div className={styles.page}>
-                <div className={styles.card}>
-                    <div className={styles.cardBar} />
-                    <div className={styles.successBox}>
-                        <KittyLogo size={80} />
-                        <h2 className={styles.successTitle}>Check your email!</h2>
-                        <p className={styles.successText}>
-                            We sent a confirmation link to <strong>{email}</strong>.
-                            Click it to activate your account and start typing!
-                        </p>
-                        <Link href="/" className="btn-primary" style={{ marginTop: "16px" }}>
-                            Back to Home
-                        </Link>
-                    </div>
-                </div>
-            </div>
-        );
-    }
 
     return (
         <div className={styles.page}>
