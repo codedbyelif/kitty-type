@@ -89,20 +89,20 @@ export default function TypingTest({ onFinish }: { onFinish: (r: Results) => voi
             const trimmed = value.trim();
             const isCorrect = trimmed === words[currentWordIndex];
 
+            setWordStatuses((prev) => {
+                const copy = [...prev];
+                copy[currentWordIndex] = isCorrect ? "correct" : "wrong";
+                return copy;
+            });
+
             if (isCorrect) {
-                setWordStatuses((prev) => {
-                    const copy = [...prev];
-                    copy[currentWordIndex] = "correct";
-                    return copy;
-                });
                 setCorrectChars((c) => c + words[currentWordIndex].length + 1);
-                setCurrentWordIndex((i) => i + 1);
-                setTyped("");
             } else {
-                // If incorrect, don't advance. Penalize by 1 error and remove the typed space.
                 setCharErrors((c) => c + 1);
-                setTyped(trimmed);
             }
+
+            setCurrentWordIndex((i) => i + 1);
+            setTyped("");
         } else {
             setTyped(value);
         }
@@ -128,7 +128,7 @@ export default function TypingTest({ onFinish }: { onFinish: (r: Results) => voi
             <div className="container">
                 <div className={styles.header}>
                     <h2 className={styles.heading}>Typing Test</h2>
-                    <p className={styles.sub}>Type correctly to auto-space, or press spacebar to submit.</p>
+                    <p className={styles.sub}>Type the words and press spacebar to advance.</p>
                 </div>
 
                 {capsWarning && (
