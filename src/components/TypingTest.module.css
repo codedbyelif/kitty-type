@@ -120,33 +120,40 @@
 
 .word {
     font-size: 2rem;
-    color: var(--muted);
+    color: #c9b0be;
+    /* Soft faded pink/purple like the screenshot */
     border-radius: 8px;
     padding: 2px 6px;
     margin: -2px -6px;
     transition: background-color 0.15s, color 0.15s;
+    font-weight: 800;
+    /* Thicker weight to match screenshot */
 }
 
 .activeWord {
-    background-color: var(--pink-100);
-    /* Cute pink highlight instead of grey */
-    color: var(--dark);
+    background-color: #fff0f6;
+    /* Very subtle pink background */
+    color: #3a2230;
+    /* Darker text for the word currently being typed */
 }
 
 .correct {
-    color: #4ade80;
+    color: #ffd6ec;
+    /* Turn fully soft pastel pink when correct */
 }
 
 .wrong {
-    color: var(--pink-700);
+    color: #ff70bb;
+    /* Bright pink for errors */
 }
 
 .charCorrect {
-    color: #4ade80;
+    color: #ffd6ec;
+    /* Match word correct color */
 }
 
 .charWrong {
-    color: var(--pink-700);
+    color: #ff70bb;
 }
 
 /* Input Bar - Softer & Cuter */
