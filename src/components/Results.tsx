@@ -45,7 +45,13 @@ export default function Results({ wpm, accuracy, correctChars, totalChars, time,
                             style={{ objectFit: "contain", borderRadius: "8px" }}
                         />
                     ) : (
-                        <KittyLogo size={80} />
+                        <Image
+                            src="/askım.jpg"
+                            alt="Cute Try Kitty"
+                            width={140}
+                            height={140}
+                            style={{ objectFit: "contain", borderRadius: "8px" }}
+                        />
                     )}
                 </div>
 
