@@ -80,18 +80,14 @@ export default function Navbar() {
                             )}
                         </li>
                     ) : (
-                        <>
-                            <li>
-                                <Link href="/auth/login" className="btn-secondary" style={{ padding: "10px 20px", fontSize: "0.9rem" }}>
-                                    Login
-                                </Link>
-                            </li>
-                            <li>
-                                <Link href="/auth/signup" className="btn-primary" style={{ padding: "10px 20px", fontSize: "0.9rem" }}>
-                                    Sign up 🌸
-                                </Link>
-                            </li>
-                        </>
+                        <li className={styles.authGroup}>
+                            <Link href="/auth/login" className="btn-secondary" style={{ padding: "10px 20px", fontSize: "0.9rem" }}>
+                                Login
+                            </Link>
+                            <Link href="/auth/signup" className="btn-primary" style={{ padding: "10px 20px", fontSize: "0.9rem" }}>
+                                Sign up 🌸
+                            </Link>
+                        </li>
                     )}
                 </ul>
             </div>

@@ -65,6 +65,13 @@
     width: 100%;
 }
 
+.authGroup {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
 .hamburger {
     display: none;
     flex-direction: column;
