@@ -2,6 +2,7 @@
 
 import styles from "./Results.module.css";
 import KittyLogo from "./KittyLogo";
+import Image from "next/image";
 
 interface ResultsProps {
     wpm: number;
@@ -35,7 +36,17 @@ export default function Results({ wpm, accuracy, correctChars, totalChars, time,
                 </div>
 
                 <div className={styles.kittyTop}>
-                    <KittyLogo size={80} />
+                    {wpm >= 85 ? (
+                        <Image
+                            src="/iiiiii.jpeg"
+                            alt="Pro Typer Kitty"
+                            width={140}
+                            height={140}
+                            style={{ objectFit: "contain", borderRadius: "8px" }}
+                        />
+                    ) : (
+                        <KittyLogo size={80} />
+                    )}
                 </div>
 
                 <div className={styles.rankBadge}>
