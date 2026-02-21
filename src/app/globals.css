@@ -1,20 +1,24 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Pacifico&display=swap');
 
 :root {
-  --pink-50: #fff0f6;
-  --pink-100: #ffd6ec;
-  --pink-200: #ffadd8;
-  --pink-300: #ff85c4;
-  --pink-400: #ff47a3;
-  --pink-500: #ff1493;
-  --pink-600: #d6006e;
-  --pink-700: #a80056;
-  --pink-800: #7a003f;
-  --pink-900: #4d0029;
+  --pink-50: #fff9fc;
+  --pink-100: #ffedf6;
+  --pink-200: #ffe0ef;
+  --pink-300: #ffd6ec;
+  /* The requested main color */
+  --pink-400: #ffb8df;
+  --pink-500: #ff99d0;
+  /* Slightly darker for button bases */
+  --pink-600: #ff70bb;
+  --pink-700: #e64098;
+  --pink-800: #b31b6b;
+  /* Text headings */
+  --pink-900: #7a003f;
+  /* Deepest text */
 
   --white: #ffffff;
-  --cream: #fff8fc;
-  --dark: #2d1b25;
+  --cream: #fffafc;
+  --dark: #3a2230;
   --muted: #a08090;
 
   --font-body: 'Nunito', sans-serif;
@@ -30,7 +34,9 @@
   --shadow-lg: 0 8px 40px rgba(255, 20, 147, 0.3);
 }
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -52,13 +58,16 @@ body {
 ::-webkit-scrollbar {
   width: 8px;
 }
+
 ::-webkit-scrollbar-track {
   background: var(--pink-50);
 }
+
 ::-webkit-scrollbar-thumb {
   background: var(--pink-300);
   border-radius: 4px;
 }
+
 ::-webkit-scrollbar-thumb:hover {
   background: var(--pink-400);
 }
@@ -130,47 +139,112 @@ body {
 
 /* Decorative paw print floating elements */
 @keyframes float {
-  0%, 100% { transform: translateY(0px) rotate(0deg); }
-  50% { transform: translateY(-20px) rotate(5deg); }
+
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-20px) rotate(5deg);
+  }
 }
 
 @keyframes floatReverse {
-  0%, 100% { transform: translateY(0px) rotate(0deg); }
-  50% { transform: translateY(20px) rotate(-5deg); }
+
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(20px) rotate(-5deg);
+  }
 }
 
 @keyframes pulse-pink {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(255, 20, 147, 0.4); }
-  50% { box-shadow: 0 0 0 12px rgba(255, 20, 147, 0); }
+
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 20, 147, 0.4);
+  }
+
+  50% {
+    box-shadow: 0 0 0 12px rgba(255, 20, 147, 0);
+  }
 }
 
 @keyframes blink {
-  0%, 90%, 100% { transform: scaleY(1); }
-  95% { transform: scaleY(0.1); }
+
+  0%,
+  90%,
+  100% {
+    transform: scaleY(1);
+  }
+
+  95% {
+    transform: scaleY(0.1);
+  }
 }
 
 @keyframes cursor-blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
 }
 
 @keyframes shimmer {
-  0% { background-position: -200% center; }
-  100% { background-position: 200% center; }
+  0% {
+    background-position: -200% center;
+  }
+
+  100% {
+    background-position: 200% center;
+  }
 }
 
 @keyframes bounce-in {
-  0% { transform: scale(0); opacity: 0; }
-  60% { transform: scale(1.1); opacity: 1; }
-  100% { transform: scale(1); }
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+
+  60% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(1);
+  }
 }
 
 @keyframes slide-up {
-  from { transform: translateY(30px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
 @keyframes wiggle {
-  0%, 100% { transform: rotate(-3deg); }
-  50% { transform: rotate(3deg); }
+
+  0%,
+  100% {
+    transform: rotate(-3deg);
+  }
+
+  50% {
+    transform: rotate(3deg);
+  }
 }
