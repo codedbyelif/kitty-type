@@ -92,18 +92,20 @@
     box-shadow: var(--shadow-sm);
 }
 
-/* Word box - matching classic typing test styles */
+/* Word box - Cuter, softer styling */
 .wordBox {
     max-width: 1000px;
-    margin: 0 auto 12px;
+    margin: 0 auto 16px;
     background: white;
-    border: 1px solid #cbd5e1;
-    border-radius: 4px;
+    border: 3px solid var(--pink-100);
+    border-radius: 24px;
     padding: 24px 32px;
     cursor: text;
     min-height: 180px;
-    font-family: Georgia, "Times New Roman", serif;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    font-family: var(--font-body);
+    font-weight: 700;
+    box-shadow: 0 8px 16px -4px rgba(255, 214, 236, 0.4);
+    transition: all 0.3s ease;
 }
 
 .words {
@@ -117,17 +119,18 @@
 }
 
 .word {
-    font-size: 2.1rem;
-    color: #1e293b;
-    border-radius: 4px;
+    font-size: 2rem;
+    color: var(--muted);
+    border-radius: 8px;
     padding: 2px 6px;
     margin: -2px -6px;
-    transition: background-color 0.1s;
+    transition: background-color 0.15s, color 0.15s;
 }
 
 .activeWord {
-    background-color: #e2e8f0;
-    /* Classic grey highlight */
+    background-color: var(--pink-100);
+    /* Cute pink highlight instead of grey */
+    color: var(--dark);
 }
 
 .correct {
@@ -146,36 +149,37 @@
     color: var(--pink-700);
 }
 
-/* Input Bar */
+/* Input Bar - Softer & Cuter */
 .inputBar {
     max-width: 1000px;
     margin: 0 auto;
-    background: var(--pink-200);
-    /* Keep Kitty theme for the bar */
+    background: var(--pink-50);
+    border: 2px solid var(--pink-200);
     padding: 16px;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 16px;
-    border-radius: var(--radius-sm);
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    border-radius: 24px;
 }
 
 .visibleInput {
     flex: 0 1 600px;
-    font-size: 1.6rem;
-    padding: 10px 16px;
-    border: 1px solid #cbd5e1;
-    border-radius: 4px;
+    font-size: 1.5rem;
+    font-weight: 700;
+    padding: 12px 20px;
+    border: 2px solid var(--pink-200);
+    border-radius: 16px;
     outline: none;
-    font-family: inherit;
-    color: #333;
-    transition: border-color 0.2s, box-shadow 0.2s;
+    font-family: var(--font-body);
+    color: var(--dark);
+    transition: all 0.25s ease;
+    background: white;
 }
 
 .visibleInput:focus {
-    border-color: var(--pink-500);
-    box-shadow: 0 0 0 3px var(--pink-100);
+    border-color: var(--pink-400);
+    box-shadow: 0 0 0 4px var(--pink-100);
 }
 
 .visibleInput:disabled {
@@ -185,33 +189,36 @@
 }
 
 .timerBoxInline {
-    background: #475569;
+    background: linear-gradient(135deg, var(--pink-300), var(--pink-500));
     color: white;
-    font-size: 1.5rem;
-    font-weight: 700;
-    padding: 10px 20px;
-    border-radius: 4px;
+    font-size: 1.4rem;
+    font-weight: 800;
+    padding: 10px 24px;
+    border-radius: 99px;
+    /* Pill shape */
     min-width: 80px;
     text-align: center;
     font-variant-numeric: tabular-nums;
+    box-shadow: 0 4px 10px rgba(255, 153, 208, 0.4);
 }
 
 .timerUrgent {
-    background: #dc2626 !important;
+    background: linear-gradient(135deg, #ff4444, #cc0000) !important;
     animation: pulse-pink 0.5s infinite;
 }
 
 .restartBtn {
-    background: var(--pink-500);
+    background: var(--pink-400);
     color: white;
     border: none;
-    padding: 11px 16px;
-    border-radius: 4px;
+    padding: 12px 18px;
+    border-radius: 16px;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: background 0.2s, transform 0.1s;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 10px rgba(255, 184, 223, 0.4);
 }
 
 .restartBtn:hover {
