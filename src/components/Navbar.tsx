@@ -68,13 +68,13 @@ export default function Navbar() {
                                     </div>
                                     <hr className={styles.dropdownDivider} />
                                     <Link href="#leaderboard" className={styles.dropdownItem} onClick={() => setDropdownOpen(false)}>
-                                        🏆 My Stats
+                                        My Stats
                                     </Link>
                                     <button
                                         className={`${styles.dropdownItem} ${styles.dropdownSignout}`}
                                         onClick={() => { signOut(); setDropdownOpen(false); }}
                                     >
-                                        🚪 Sign Out
+                                        Sign Out
                                     </button>
                                 </div>
                             )}
@@ -85,7 +85,7 @@ export default function Navbar() {
                                 Login
                             </Link>
                             <Link href="/auth/signup" className="btn-primary" style={{ padding: "10px 20px", fontSize: "0.9rem" }}>
-                                Sign up 🌸
+                                Sign up
                             </Link>
                         </li>
                     )}

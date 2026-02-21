@@ -84,7 +84,7 @@ export default function Leaderboard() {
                             className={`${styles.filterPill} ${difficulty === d ? styles.filterActive : ""}`}
                             onClick={() => setDifficulty(d)}
                         >
-                            {d === "all" ? "⭐ All" : d === "easy" ? "🌸 Easy" : d === "medium" ? "🎀 Medium" : "💎 Hard"}
+                            {d === "all" ? "All" : d === "easy" ? "Easy" : d === "medium" ? "Medium" : "Hard"}
                         </button>
                     ))}
                 </div>

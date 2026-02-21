@@ -33,7 +33,7 @@ export default function About() {
                     <div className={styles.ctaInner}>
                         <h3 className={styles.ctaTitle}>Ready to become a typing legend? 👑</h3>
                         <p className={styles.ctaDesc}>Join thousands of cute typists already using KittyType</p>
-                        <a href="#test" className="btn-primary">Start Your Test 🐱</a>
+                        <a href="#test" className="btn-primary">Start Your Test</a>
                     </div>
                 </div>
             </div>
