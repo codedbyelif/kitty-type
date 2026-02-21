@@ -13,16 +13,7 @@ interface ResultsProps {
     onRetry: () => void;
 }
 
-function getRank(wpm: number): { label: string; icon: string; desc: string } {
-    if (wpm >= 120) return { label: "Kitty Legend", icon: "◆", desc: "You type faster than a kitty's heartbeat!" };
-    if (wpm >= 80) return { label: "Super Paws", icon: "★", desc: "Incredible speed — you're a typing superstar!" };
-    if (wpm >= 50) return { label: "Pretty Fast", icon: "♦", desc: "You're getting there, keep going!" };
-    if (wpm >= 30) return { label: "Kitten Level", icon: "♥", desc: "Keep practicing, little kitty!" };
-    return { label: "Baby Paws", icon: "♣", desc: "Every expert was once a beginner!" };
-}
-
 export default function Results({ wpm, accuracy, correctChars, totalChars, time, onRetry }: ResultsProps) {
-    const rank = getRank(wpm);
     const errorCount = totalChars - correctChars;
 
     return (
@@ -40,27 +31,19 @@ export default function Results({ wpm, accuracy, correctChars, totalChars, time,
                         <Image
                             src="/iiiiii.jpeg"
                             alt="Pro Typer Kitty"
-                            width={140}
-                            height={140}
-                            style={{ objectFit: "contain", borderRadius: "8px" }}
+                            width={220}
+                            height={220}
+                            style={{ objectFit: "contain", borderRadius: "12px" }}
                         />
                     ) : (
                         <Image
                             src="/askım.jpg"
                             alt="Cute Try Kitty"
-                            width={140}
-                            height={140}
-                            style={{ objectFit: "contain", borderRadius: "8px" }}
+                            width={220}
+                            height={220}
+                            style={{ objectFit: "contain", borderRadius: "12px" }}
                         />
                     )}
-                </div>
-
-                <div className={styles.rankBadge}>
-                    <span className={styles.rankEmoji}>{rank.icon}</span>
-                    <div>
-                        <div className={styles.rankLabel}>{rank.label}</div>
-                        <div className={styles.rankDesc}>{rank.desc}</div>
-                    </div>
                 </div>
 
                 <div className={styles.statsGrid}>
