@@ -28,7 +28,7 @@ Welcome to **KittyType**! This is a web-based typing test platform designed with
 Below is a high-level overview of the KittyType project directory structure:
 
 ```text
-kitty-finger/
+kitty-type/
 ├── public/                     # Static assets (images, icons)
 │   ├── Adsız tasarım kopyası.png # Custom Kitty Logo
 │   ├── askım.jpg                 # Fallback results image (< 85 WPM)
@@ -69,8 +69,8 @@ If you want to run KittyType on your own local machine, follow these steps:
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/codedbyelif/kitty-finger.git
-   cd kitty-finger
+   git clone https://github.com/codedbyelif/kitty-type.git
+   cd kitty-type
    ```
 
 2. **Install dependencies:**
@@ -112,7 +112,7 @@ If you want to run KittyType on your own local machine, follow these steps:
 KittyType proje yapisinin genel bir ozeti asagidaki gibidir:
 
 ```text
-kitty-finger/
+kitty-type/
 ├── public/                     # Statik dosyalar (Gorseller, iconlar)
 │   ├── Adsız tasarım kopyası.png # Ozel Kedi Logosu
 │   ├── askım.jpg                 # 85 WPM alti icin cikan sonuc fotografi
@@ -153,8 +153,8 @@ Eger KittyType testini kendi cihazinizda baslatmak isterseniz su adimlari uygula
 
 1. **Projeyi klonlayin:**
    ```bash
-   git clone https://github.com/codedbyelif/kitty-finger.git
-   cd kitty-finger
+   git clone https://github.com/codedbyelif/kitty-type.git
+   cd kitty-type
    ```
 
 2. **Gerekli paketleri yukleyin:**
