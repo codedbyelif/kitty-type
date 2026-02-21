@@ -138,22 +138,22 @@
 }
 
 .correct {
-    color: #ffd6ec;
-    /* Turn fully soft pastel pink when correct */
+    color: #86efac;
+    /* Soft pastel green when correct */
 }
 
 .wrong {
-    color: #ff70bb;
-    /* Bright pink for errors */
+    color: #be185d;
+    /* Dark pink for errors */
 }
 
 .charCorrect {
-    color: #ffd6ec;
+    color: #86efac;
     /* Match word correct color */
 }
 
 .charWrong {
-    color: #ff70bb;
+    color: #be185d;
 }
 
 /* Input Bar - Softer & Cuter */
