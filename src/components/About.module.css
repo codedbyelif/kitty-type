@@ -104,3 +104,30 @@
     color: rgba(255, 255, 255, 0.85);
     font-size: 1rem;
 }
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .section {
+        padding: 40px 0;
+    }
+
+    .heading {
+        font-size: 2.2rem;
+    }
+
+    .grid {
+        gap: 16px;
+    }
+
+    .card {
+        padding: 24px 20px;
+    }
+
+    .ctaInner {
+        padding: 32px 20px;
+    }
+
+    .ctaTitle {
+        font-size: 1.5rem;
+    }
+}

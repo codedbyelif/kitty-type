@@ -201,3 +201,23 @@
     color: var(--muted);
     font-size: 0.85rem;
 }
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .section {
+        padding: 40px 0;
+    }
+
+    .heading {
+        font-size: 2.2rem;
+    }
+
+    .filters {
+        gap: 8px;
+    }
+
+    .filterPill {
+        padding: 6px 14px;
+        font-size: 0.8rem;
+    }
+}

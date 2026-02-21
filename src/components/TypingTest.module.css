@@ -235,3 +235,54 @@
 .restartBtn:active {
     transform: scale(0.95);
 }
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .section {
+        padding: 40px 0;
+    }
+
+    .heading {
+        font-size: 2.2rem;
+    }
+
+    .sub {
+        font-size: 1rem;
+    }
+
+    .controls {
+        gap: 20px;
+    }
+
+    .wordBox {
+        padding: 16px 20px;
+        min-height: 140px;
+    }
+
+    .word {
+        font-size: 1.5rem;
+    }
+
+    .inputBar {
+        flex-direction: column;
+        padding: 12px;
+        border-radius: 16px;
+        gap: 12px;
+    }
+
+    .visibleInput {
+        width: 100%;
+        flex: 1 1 auto;
+        font-size: 1.3rem;
+        padding: 10px 16px;
+    }
+
+    .timerBoxInline {
+        width: 100%;
+        font-size: 1.2rem;
+    }
+
+    .restartBtn {
+        width: 100%;
+    }
+}
