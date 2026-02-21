@@ -45,7 +45,7 @@
 .card {
     background: white;
     border-radius: var(--radius-lg);
-    padding: 0 0 40px;
+    padding: 0 0 32px;
     width: 100%;
     max-width: 460px;
     box-shadow: var(--shadow-lg);
@@ -60,13 +60,13 @@
     background: linear-gradient(90deg, var(--pink-300), var(--pink-500), var(--pink-400));
     background-size: 200%;
     animation: shimmer 2.5s linear infinite;
-    margin-bottom: 32px;
+    margin-bottom: 20px;
 }
 
 .logoArea {
     text-align: center;
     padding: 0 40px;
-    margin-bottom: 28px;
+    margin-bottom: 16px;
 }
 
 .title {
@@ -85,7 +85,7 @@
 .form {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 12px;
     padding: 0 40px;
 }
 
