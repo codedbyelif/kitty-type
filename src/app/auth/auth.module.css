@@ -89,11 +89,6 @@
     padding: 0 40px;
 }
 
-.twoCol {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-}
 
 .field {
     display: flex;
@@ -129,6 +124,13 @@
 
 .inputError {
     border-color: #e84040 !important;
+}
+
+.fieldError {
+    color: #cc2222;
+    font-size: 0.78rem;
+    font-weight: 600;
+    margin-top: -2px;
 }
 
 .errorBox {

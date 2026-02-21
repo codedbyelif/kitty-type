@@ -23,7 +23,7 @@ export default function SignupPage() {
         setError("");
 
         if (password !== confirm) {
-            setError("Passwords don't match! 🐾");
+            setError("Passwords don't match!");
             return;
         }
         if (username.length < 3) {
@@ -57,13 +57,13 @@ export default function SignupPage() {
                     <div className={styles.cardBar} />
                     <div className={styles.successBox}>
                         <KittyLogo size={80} />
-                        <h2 className={styles.successTitle}>Check your email! 🎀</h2>
+                        <h2 className={styles.successTitle}>Check your email!</h2>
                         <p className={styles.successText}>
                             We sent a confirmation link to <strong>{email}</strong>.
                             Click it to activate your account and start typing!
                         </p>
                         <Link href="/" className="btn-primary" style={{ marginTop: "16px" }}>
-                            Back to Home 🐾
+                            Back to Home
                         </Link>
                     </div>
                 </div>
@@ -73,17 +73,12 @@ export default function SignupPage() {
 
     return (
         <div className={styles.page}>
-            <span className={`${styles.deco} ${styles.d1}`}>🐾</span>
-            <span className={`${styles.deco} ${styles.d2}`}>🎀</span>
-            <span className={`${styles.deco} ${styles.d3}`}>🌸</span>
-            <span className={`${styles.deco} ${styles.d4}`}>⭐</span>
-
             <div className={styles.card}>
                 <div className={styles.cardBar} />
 
                 <div className={styles.logoArea}>
                     <KittyLogo size={64} />
-                    <h1 className={styles.title}>Join KittyType! 🌸</h1>
+                    <h1 className={styles.title}>Join KittyType!</h1>
                     <p className={styles.sub}>Create an account to save your scores</p>
                 </div>
 
@@ -115,37 +110,39 @@ export default function SignupPage() {
                         />
                     </div>
 
-                    <div className={styles.twoCol}>
-                        <div className={styles.field}>
-                            <label className={styles.label} htmlFor="password">Password</label>
-                            <input
-                                id="password"
-                                type="password"
-                                required
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
-                                placeholder="••••••••"
-                                className={styles.input}
-                                minLength={6}
-                            />
-                        </div>
-                        <div className={styles.field}>
-                            <label className={styles.label} htmlFor="confirm">Confirm</label>
-                            <input
-                                id="confirm"
-                                type="password"
-                                required
-                                value={confirm}
-                                onChange={(e) => setConfirm(e.target.value)}
-                                placeholder="••••••••"
-                                className={`${styles.input} ${confirm && confirm !== password ? styles.inputError : ""}`}
-                            />
-                        </div>
+                    <div className={styles.field}>
+                        <label className={styles.label} htmlFor="password">Password</label>
+                        <input
+                            id="password"
+                            type="password"
+                            required
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            placeholder="At least 6 characters"
+                            className={styles.input}
+                            minLength={6}
+                        />
+                    </div>
+
+                    <div className={styles.field}>
+                        <label className={styles.label} htmlFor="confirm">Confirm Password</label>
+                        <input
+                            id="confirm"
+                            type="password"
+                            required
+                            value={confirm}
+                            onChange={(e) => setConfirm(e.target.value)}
+                            placeholder="Repeat your password"
+                            className={`${styles.input} ${confirm && confirm !== password ? styles.inputError : ""}`}
+                        />
+                        {confirm && confirm !== password && (
+                            <span className={styles.fieldError}>Passwords do not match</span>
+                        )}
                     </div>
 
                     {error && (
                         <div className={styles.errorBox}>
-                            <span>⚠️</span> {error}
+                            {error}
                         </div>
                     )}
 
@@ -154,7 +151,7 @@ export default function SignupPage() {
                         className={`btn-primary ${styles.submitBtn}`}
                         disabled={loading}
                     >
-                        {loading ? "Creating account… 🐱" : "Create Account 🎀"}
+                        {loading ? "Creating account..." : "Create Account"}
                     </button>
                 </form>
 
@@ -178,7 +175,7 @@ export default function SignupPage() {
                 <p className={styles.switchText}>
                     Already have an account?{" "}
                     <Link href="/auth/login" className={styles.switchLink}>
-                        Login here 🐾
+                        Login here
                     </Link>
                 </p>
             </div>
