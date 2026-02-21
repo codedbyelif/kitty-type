@@ -79,15 +79,6 @@ export default function Results({ wpm, accuracy, correctChars, totalChars, time,
                     <button className="btn-primary" onClick={onRetry}>
                         Try Again
                     </button>
-                    <button
-                        className="btn-secondary"
-                        onClick={() => {
-                            const text = `I just got ${wpm} WPM with ${accuracy}% accuracy on KittyType!`;
-                            navigator.clipboard.writeText(text).then(() => alert("Copied to clipboard! Share your result."));
-                        }}
-                    >
-                        Share Result
-                    </button>
                 </div>
             </div>
         </div>
