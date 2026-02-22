@@ -4,6 +4,8 @@ import styles from "./Results.module.css";
 import KittyLogo from "./KittyLogo";
 import Image from "next/image";
 import { useLanguage } from "@/context/LanguageContext";
+import confetti from "canvas-confetti";
+import { useEffect } from "react";
 
 interface ResultsProps {
     wpm: number;
@@ -17,6 +19,34 @@ interface ResultsProps {
 export default function Results({ wpm, accuracy, correctChars, totalChars, time, onRetry }: ResultsProps) {
     const { t } = useLanguage();
     const errorCount = totalChars - correctChars;
+
+    useEffect(() => {
+        if (wpm >= 85) {
+            const end = Date.now() + 3 * 1000;
+            const colors = ['#ff99d0', '#ffb8df', '#ffffff'];
+
+            (function frame() {
+                confetti({
+                    particleCount: 5,
+                    angle: 60,
+                    spread: 55,
+                    origin: { x: 0 },
+                    colors: colors
+                });
+                confetti({
+                    particleCount: 5,
+                    angle: 120,
+                    spread: 55,
+                    origin: { x: 1 },
+                    colors: colors
+                });
+
+                if (Date.now() < end) {
+                    requestAnimationFrame(frame);
+                }
+            }());
+        }
+    }, [wpm]);
 
     return (
         <div className={styles.overlay}>

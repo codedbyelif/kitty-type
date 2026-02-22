@@ -74,9 +74,6 @@ export default function Navbar() {
                                         </div>
                                     </div>
                                     <hr className={styles.dropdownDivider} />
-                                    <Link href="#leaderboard" className={styles.dropdownItem} onClick={() => setDropdownOpen(false)}>
-                                        {t("nav_my_stats")}
-                                    </Link>
                                     <button
                                         className={`${styles.dropdownItem} ${styles.dropdownSignout}`}
                                         onClick={() => { signOut(); setDropdownOpen(false); }}
