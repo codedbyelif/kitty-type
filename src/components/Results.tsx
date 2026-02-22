@@ -5,7 +5,7 @@ import KittyLogo from "./KittyLogo";
 import Image from "next/image";
 import { useLanguage } from "@/context/LanguageContext";
 import confetti from "canvas-confetti";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 interface ResultsProps {
     wpm: number;
@@ -19,25 +19,30 @@ interface ResultsProps {
 export default function Results({ wpm, accuracy, correctChars, totalChars, time, onRetry }: ResultsProps) {
     const { t } = useLanguage();
     const errorCount = totalChars - correctChars;
+    const canvasRef = useRef<HTMLCanvasElement>(null);
 
     useEffect(() => {
-        if (wpm >= 85) {
+        if (wpm >= 85 && canvasRef.current) {
             const end = Date.now() + 3 * 1000;
             const colors = ['#ff99d0', '#ffb8df', '#ffffff'];
+            const myConfetti = confetti.create(canvasRef.current, {
+                resize: true,
+                useWorker: true
+            });
 
             (function frame() {
-                confetti({
+                myConfetti({
                     particleCount: 5,
                     angle: 60,
                     spread: 55,
-                    origin: { x: 0 },
+                    origin: { x: 0, y: 0.8 },
                     colors: colors
                 });
-                confetti({
+                myConfetti({
                     particleCount: 5,
                     angle: 120,
                     spread: 55,
-                    origin: { x: 1 },
+                    origin: { x: 1, y: 0.8 },
                     colors: colors
                 });
 
@@ -51,6 +56,7 @@ export default function Results({ wpm, accuracy, correctChars, totalChars, time,
     return (
         <div className={styles.overlay}>
             <div className={styles.card}>
+                <canvas ref={canvasRef} className={styles.confettiCanvas} />
                 {/* Decorative dots */}
                 <div className={styles.confetti}>
                     {Array.from({ length: 8 }).map((_, i) => (
