@@ -260,3 +260,21 @@
 .dropdownSignout {
     color: #c0392b;
 }
+
+.langToggle {
+    background: var(--pink-100);
+    color: var(--pink-700);
+    border: 1.5px solid var(--pink-300);
+    border-radius: var(--radius-sm);
+    padding: 6px 10px;
+    font-family: var(--font-body);
+    font-weight: 800;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.langToggle:hover {
+    background: var(--pink-200);
+    transform: scale(1.05);
+}

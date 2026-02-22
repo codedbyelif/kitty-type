@@ -1,8 +1,10 @@
 import Link from "next/link";
 import styles from "./Hero.module.css";
 import KittyLogo from "./KittyLogo";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function Hero() {
+    const { t } = useLanguage();
     return (
         <section className={styles.hero}>
             {/* Floating decorative elements — kept as pure CSS shapes, no emoji */}
@@ -14,45 +16,44 @@ export default function Hero() {
 
             <div className={`container ${styles.content}`}>
                 <div className={styles.badge}>
-                    <span>Hello Kitty Approved</span>
+                    <span>{t("hero_badge")}</span>
                 </div>
                 <h1 className={styles.title}>
-                    How Fast Are
-                    <span className={styles.titleHighlight}> Your Paws?</span>
+                    {t("hero_title")}
+                    <span className={styles.titleHighlight}>{t("hero_title_highlight")}</span>
                 </h1>
                 <p className={styles.subtitle}>
-                    The cutest typing speed test in the universe. Measure your WPM,
-                    beat your record, and share your results with friends!
+                    {t("hero_subtitle")}
                 </p>
                 <div className={styles.stats}>
                     <div className={styles.stat}>
                         <strong>12,000+</strong>
-                        <span>Tests Taken</span>
+                        <span>{t("hero_tests_taken")}</span>
                     </div>
                     <div className={styles.divider} />
                     <div className={styles.stat}>
                         <strong>250 WPM</strong>
-                        <span>Top Record</span>
+                        <span>{t("hero_top_record")}</span>
                     </div>
                     <div className={styles.divider} />
                     <div className={styles.stat}>
                         <strong>99.8%</strong>
-                        <span>Best Accuracy</span>
+                        <span>{t("hero_best_accuracy")}</span>
                     </div>
                 </div>
                 <div className={styles.ctas}>
                     <a href="#test" className="btn-primary">
-                        Start Typing
+                        {t("hero_start_typing")}
                     </a>
                     <a href="#leaderboard" className="btn-secondary">
-                        View Leaderboard
+                        {t("hero_view_leaderboard")}
                     </a>
                 </div>
                 <div className={styles.kittyWrapper}>
                     <div className={styles.kittyBubble}>
                         <KittyLogo size={120} />
                         <div className={styles.speechBubble}>
-                            Type fast, little kitty!
+                            {t("hero_kitty_bubble")}
                         </div>
                     </div>
                 </div>

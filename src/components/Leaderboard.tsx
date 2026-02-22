@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import styles from "./Leaderboard.module.css";
 import { createClient } from "@/lib/supabase/client";
 import type { LeaderboardEntry } from "@/lib/database.types";
+import { useLanguage } from "@/context/LanguageContext";
 
 type Difficulty = "easy" | "medium" | "hard" | "all";
 
@@ -21,6 +22,7 @@ function formatDate(s: string) {
 }
 
 export default function Leaderboard() {
+    const { t } = useLanguage();
     const [difficulty, setDifficulty] = useState<Difficulty>("all");
     const [scores, setScores] = useState<LeaderboardEntry[]>([]);
     const [loading, setLoading] = useState(true);
@@ -59,9 +61,9 @@ export default function Leaderboard() {
         <section className={styles.section} id="leaderboard">
             <div className="container">
                 <div className={styles.header}>
-                    <div className={styles.badge}>🏆 Top Typers</div>
-                    <h2 className={styles.heading}>Global Leaderboard</h2>
-                    <p className={styles.sub}>The fastest paws in the world — can you beat them? 🐾</p>
+                    <div className={styles.badge}>{t("lb_title")}</div>
+                    <h2 className={styles.heading}>{t("nav_leaderboard")}</h2>
+                    <p className={styles.sub}>{t("lb_subtitle")}</p>
                 </div>
 
                 {/* Difficulty filter */}
@@ -72,7 +74,7 @@ export default function Leaderboard() {
                             className={`${styles.filterPill} ${difficulty === d ? styles.filterActive : ""}`}
                             onClick={() => setDifficulty(d)}
                         >
-                            {d === "all" ? "All" : d === "easy" ? "Easy" : d === "medium" ? "Medium" : "Hard"}
+                            {d === "all" ? "All" : d === "easy" ? t("test_easy") : d === "medium" ? t("test_medium") : t("test_hard")}
                         </button>
                     ))}
                 </div>
@@ -87,11 +89,11 @@ export default function Leaderboard() {
                         <table className={styles.table}>
                             <thead>
                                 <tr>
-                                    <th>Rank</th>
-                                    <th>Player</th>
-                                    <th>WPM</th>
-                                    <th>Accuracy</th>
-                                    <th>Date</th>
+                                    <th>{t("lb_rank")}</th>
+                                    <th>{t("lb_typist")}</th>
+                                    <th>{t("lb_wpm")}</th>
+                                    <th>{t("lb_acc")}</th>
+                                    <th>{t("lb_date")}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -117,7 +119,7 @@ export default function Leaderboard() {
 
 
                 <div className={styles.footer}>
-                    <p>🎀 Scores refresh daily · Login to appear on the leaderboard</p>
+                    <p>🎀 {t("lb_log_in_to_appear")}</p>
                 </div>
             </div>
         </section>

@@ -5,11 +5,13 @@ import { useState, useRef, useEffect } from "react";
 import styles from "./Navbar.module.css";
 import KittyLogo from "./KittyLogo";
 import { useAuth } from "@/context/AuthContext";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function Navbar() {
     const [menuOpen, setMenuOpen] = useState(false);
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const { user, profile, signOut } = useAuth();
+    const { t, lang, setLang } = useLanguage();
     const dropdownRef = useRef<HTMLLIElement>(null);
 
     // Close dropdown on outside click
@@ -44,9 +46,14 @@ export default function Navbar() {
                 </button>
 
                 <ul className={`${styles.links} ${menuOpen ? styles.linksOpen : ""}`}>
-                    <li><Link href="#test" className={styles.link} onClick={() => setMenuOpen(false)}>Type Test</Link></li>
-                    <li><Link href="#leaderboard" className={styles.link} onClick={() => setMenuOpen(false)}>Leaderboard</Link></li>
-                    <li><Link href="#about" className={styles.link} onClick={() => setMenuOpen(false)}>About</Link></li>
+                    <li>
+                        <button className={styles.langToggle} onClick={() => setLang(lang === 'en' ? 'tr' : 'en')} aria-label="Toggle Language">
+                            {lang === "en" ? "TR" : "EN"}
+                        </button>
+                    </li>
+                    <li><Link href="#test" className={styles.link} onClick={() => setMenuOpen(false)}>{t("nav_type_test")}</Link></li>
+                    <li><Link href="#leaderboard" className={styles.link} onClick={() => setMenuOpen(false)}>{t("nav_leaderboard")}</Link></li>
+                    <li><Link href="#about" className={styles.link} onClick={() => setMenuOpen(false)}>{t("nav_about")}</Link></li>
 
                     {user ? (
                         <li ref={dropdownRef} className={styles.userMenu}>
@@ -68,13 +75,13 @@ export default function Navbar() {
                                     </div>
                                     <hr className={styles.dropdownDivider} />
                                     <Link href="#leaderboard" className={styles.dropdownItem} onClick={() => setDropdownOpen(false)}>
-                                        My Stats
+                                        {t("nav_my_stats")}
                                     </Link>
                                     <button
                                         className={`${styles.dropdownItem} ${styles.dropdownSignout}`}
                                         onClick={() => { signOut(); setDropdownOpen(false); }}
                                     >
-                                        Sign Out
+                                        {t("nav_sign_out")}
                                     </button>
                                 </div>
                             )}
@@ -82,10 +89,10 @@ export default function Navbar() {
                     ) : (
                         <li className={styles.authGroup}>
                             <Link href="/auth/login" className="btn-secondary" style={{ padding: "10px 20px", fontSize: "0.9rem" }}>
-                                Login
+                                {t("nav_login")}
                             </Link>
                             <Link href="/auth/signup" className="btn-primary" style={{ padding: "10px 20px", fontSize: "0.9rem" }}>
-                                Sign up
+                                {t("nav_signup")}
                             </Link>
                         </li>
                     )}

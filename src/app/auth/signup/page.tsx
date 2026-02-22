@@ -6,8 +6,10 @@ import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 import styles from "../auth.module.css";
 import KittyLogo from "@/components/KittyLogo";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function SignupPage() {
+    const { t } = useLanguage();
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -57,13 +59,13 @@ export default function SignupPage() {
 
                 <div className={styles.logoArea}>
                     <KittyLogo size={56} />
-                    <h1 className={styles.title}>Join KittyType!</h1>
-                    <p className={styles.sub}>Create an account to save your scores</p>
+                    <h1 className={styles.title}>{t("auth_create_account")}</h1>
+                    <p className={styles.sub}>{t("auth_signup_sub")}</p>
                 </div>
 
                 <form onSubmit={handleSignup} className={styles.form}>
                     <div className={styles.field}>
-                        <label className={styles.label} htmlFor="username">Username</label>
+                        <label className={styles.label} htmlFor="username">{t("auth_username")}</label>
                         <input
                             id="username"
                             type="text"
@@ -77,7 +79,7 @@ export default function SignupPage() {
                     </div>
 
                     <div className={styles.field}>
-                        <label className={styles.label} htmlFor="email">Email</label>
+                        <label className={styles.label} htmlFor="email">{t("auth_email")}</label>
                         <input
                             id="email"
                             type="email"
@@ -90,7 +92,7 @@ export default function SignupPage() {
                     </div>
 
                     <div className={styles.field}>
-                        <label className={styles.label} htmlFor="password">Password</label>
+                        <label className={styles.label} htmlFor="password">{t("auth_password")}</label>
                         <input
                             id="password"
                             type="password"
@@ -104,7 +106,7 @@ export default function SignupPage() {
                     </div>
 
                     <div className={styles.field}>
-                        <label className={styles.label} htmlFor="confirm">Confirm Password</label>
+                        <label className={styles.label} htmlFor="confirm">{t("auth_confirm_password")}</label>
                         <input
                             id="confirm"
                             type="password"
@@ -130,16 +132,16 @@ export default function SignupPage() {
                         className={`btn-primary ${styles.submitBtn}`}
                         disabled={loading}
                     >
-                        {loading ? "Creating account..." : "Create Account"}
+                        {loading ? t("auth_creating") : t("auth_signup_btn")}
                     </button>
                 </form>
 
 
 
                 <p className={styles.switchText}>
-                    Already have an account?{" "}
+                    {t("auth_have_account")}{" "}
                     <Link href="/auth/login" className={styles.switchLink}>
-                        Login here
+                        {t("auth_signin_btn")}
                     </Link>
                 </p>
             </div>

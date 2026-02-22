@@ -1,7 +1,9 @@
 import styles from "./Footer.module.css";
 import KittyLogo from "./KittyLogo";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function Footer() {
+    const { t } = useLanguage();
     return (
         <footer className={styles.footerWrapper}>
             <div className={styles.waveContainer}>
@@ -16,22 +18,22 @@ export default function Footer() {
                             <KittyLogo size={50} />
                             <div className={styles.brandText}>
                                 <h3 className={styles.brandTitle}>KittyType 🌸</h3>
-                                <p className={styles.tagline}>The cutest typing speed test</p>
+                                <p className={styles.tagline}>{t("footer_tagline")}</p>
                             </div>
                         </div>
                     </div>
 
                     <div className={styles.linksBox}>
-                        <h4>Explore</h4>
+                        <h4>{t("footer_explore")}</h4>
                         <div className={styles.links}>
-                            <a href="#test">Type Test</a>
-                            <a href="#leaderboard">Leaderboard</a>
-                            <a href="#about">About</a>
+                            <a href="#test">{t("nav_type_test")}</a>
+                            <a href="#leaderboard">{t("nav_leaderboard")}</a>
+                            <a href="#about">{t("nav_about")}</a>
                         </div>
                     </div>
 
                     <div className={styles.socialBox}>
-                        <h4>Follow Us</h4>
+                        <h4>{t("footer_follow")}</h4>
                         <div className={styles.social}>
                             <a
                                 href="https://github.com/codedbyelif"
@@ -72,7 +74,7 @@ export default function Footer() {
                     </div>
 
                     <div className={styles.copy}>
-                        Made by <a href="https://github.com/codedbyelif" target="_blank" rel="noopener noreferrer" style={{ color: "inherit", textDecoration: "none", fontWeight: "bold" }}>codedbyelif</a> &nbsp;·&nbsp; {new Date().getFullYear()}
+                        {t("footer_made_by")} <a href="https://github.com/codedbyelif" target="_blank" rel="noopener noreferrer" style={{ color: "inherit", textDecoration: "none", fontWeight: "bold" }}>codedbyelif</a> &nbsp;·&nbsp; {new Date().getFullYear()}
                     </div>
                 </div>
             </div>

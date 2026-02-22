@@ -3,6 +3,7 @@
 import styles from "./Results.module.css";
 import KittyLogo from "./KittyLogo";
 import Image from "next/image";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface ResultsProps {
     wpm: number;
@@ -14,6 +15,7 @@ interface ResultsProps {
 }
 
 export default function Results({ wpm, accuracy, correctChars, totalChars, time, onRetry }: ResultsProps) {
+    const { t } = useLanguage();
     const errorCount = totalChars - correctChars;
 
     return (
@@ -49,35 +51,35 @@ export default function Results({ wpm, accuracy, correctChars, totalChars, time,
                 <div className={styles.statsGrid}>
                     <div className={styles.stat}>
                         <div className={styles.statValue}>{wpm}</div>
-                        <div className={styles.statLabel}>WPM</div>
+                        <div className={styles.statLabel}>{t("results_wpm")}</div>
                     </div>
                     <div className={styles.stat}>
                         <div className={styles.statValue}>{accuracy}%</div>
-                        <div className={styles.statLabel}>Accuracy</div>
+                        <div className={styles.statLabel}>{t("results_accuracy")}</div>
                     </div>
                     <div className={styles.stat}>
                         <div className={styles.statValue}>{correctChars}</div>
-                        <div className={styles.statLabel}>Correct Chars</div>
+                        <div className={styles.statLabel}>{t("results_correct")} {t("results_chars").toLowerCase()}</div>
                     </div>
                     <div className={styles.stat}>
                         <div className={styles.statValue} style={{ color: errorCount > 0 ? "#e84040" : undefined }}>
                             {errorCount}
                         </div>
-                        <div className={styles.statLabel}>Errors</div>
+                        <div className={styles.statLabel}>{t("results_incorrect")}</div>
                     </div>
                     <div className={styles.stat}>
                         <div className={styles.statValue}>{time}s</div>
-                        <div className={styles.statLabel}>Time</div>
+                        <div className={styles.statLabel}>{t("results_time_taken")}</div>
                     </div>
                     <div className={styles.stat}>
                         <div className={styles.statValue}>{Math.round(wpm * (accuracy / 100))}</div>
-                        <div className={styles.statLabel}>Adjusted WPM</div>
+                        <div className={styles.statLabel}>WPM ({t("results_accuracy")})</div>
                     </div>
                 </div>
 
                 <div className={styles.actions}>
                     <button className="btn-primary" onClick={onRetry}>
-                        Try Again
+                        {t("results_try_again")}
                     </button>
                 </div>
             </div>

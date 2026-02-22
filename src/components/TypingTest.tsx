@@ -1,9 +1,10 @@
 "use client";
 
 import { useState, useEffect, useRef, useCallback } from "react";
-import { generateWordList, type Language } from "@/data/words";
+import { generateWordList, type Language as WordListLanguage } from "@/data/words";
 import styles from "./TypingTest.module.css";
 import KittyLogo from "./KittyLogo";
+import { useLanguage } from "@/context/LanguageContext";
 
 type Difficulty = "easy" | "medium" | "hard";
 type GameState = "idle" | "running" | "finished";
@@ -20,9 +21,10 @@ interface Results {
 const DURATIONS = [15, 30, 60] as const;
 
 export default function TypingTest({ onFinish }: { onFinish: (r: Results) => void }) {
+    const { t, lang: uiLang } = useLanguage();
     const [difficulty, setDifficulty] = useState<Difficulty>("medium");
     const [duration, setDuration] = useState<15 | 30 | 60>(30);
-    const [lang, setLang] = useState<Language>("en");
+    const [lang, setLang] = useState<WordListLanguage>("en");
     const [words, setWords] = useState<string[]>([]);
     const [typed, setTyped] = useState("");
     const [currentWordIndex, setCurrentWordIndex] = useState(0);
@@ -128,13 +130,13 @@ export default function TypingTest({ onFinish }: { onFinish: (r: Results) => voi
         <section className={styles.section} id="test">
             <div className="container">
                 <div className={styles.header}>
-                    <h2 className={styles.heading}>Typing Test</h2>
-                    <p className={styles.sub}>Type the words and press spacebar to advance.</p>
+                    <h2 className={styles.heading}>{t("test_title")}</h2>
+                    <p className={styles.sub}>{t("test_subtitle")}</p>
                 </div>
 
                 {capsWarning && (
                     <div className={styles.capsWarningBox}>
-                        ⚠️ Caps Lock is ON!
+                        {t("test_caps_warning")}
                     </div>
                 )}
 
@@ -142,9 +144,9 @@ export default function TypingTest({ onFinish }: { onFinish: (r: Results) => voi
                 <div className={styles.controls}>
                     {/* Language toggle */}
                     <div className={styles.controlGroup}>
-                        <label className={styles.controlLabel}>Language</label>
+                        <label className={styles.controlLabel}>{t("test_lang_label")}</label>
                         <div className={styles.pills}>
-                            {(["en", "tr"] as Language[]).map((l) => (
+                            {(["en", "tr"] as WordListLanguage[]).map((l) => (
                                 <button
                                     key={l}
                                     className={`${styles.pill} ${lang === l ? styles.pillActive : ""}`}
@@ -159,7 +161,7 @@ export default function TypingTest({ onFinish }: { onFinish: (r: Results) => voi
 
                     {/* Difficulty */}
                     <div className={styles.controlGroup}>
-                        <label className={styles.controlLabel}>Difficulty</label>
+                        <label className={styles.controlLabel}>{t("test_diff_label")}</label>
                         <div className={styles.pills}>
                             {(["easy", "medium", "hard"] as Difficulty[]).map((d) => (
                                 <button
@@ -168,7 +170,7 @@ export default function TypingTest({ onFinish }: { onFinish: (r: Results) => voi
                                     onClick={() => setDifficulty(d)}
                                     disabled={gameState === "running"}
                                 >
-                                    {d === "easy" ? "Easy" : d === "medium" ? "Medium" : "Hard"}
+                                    {d === "easy" ? t("test_easy") : d === "medium" ? t("test_medium") : t("test_hard")}
                                 </button>
                             ))}
                         </div>
@@ -176,7 +178,7 @@ export default function TypingTest({ onFinish }: { onFinish: (r: Results) => voi
 
                     {/* Duration */}
                     <div className={styles.controlGroup}>
-                        <label className={styles.controlLabel}>Time</label>
+                        <label className={styles.controlLabel}>{t("test_time_label")}</label>
                         <div className={styles.pills}>
                             {DURATIONS.map((d) => (
                                 <button
