@@ -6,13 +6,16 @@ import type { Database } from "@/lib/database.types";
 export async function POST(request: Request) {
     // 1. Dış İzinler (CORS) - Sadece kendi sitenden gelen istekleri kabul et
     const origin = request.headers.get("origin") || "";
-    // Vercel üzerindeki production linkini ve localhost'u güvenli kabul et
-    const allowedOrigins = [
-        "https://kitty-finger.vercel.app", // kendi gerçek domainini buraya da ekleyebilirsin
-        "http://localhost:3000"
-    ];
 
-    if (!allowedOrigins.includes(origin)) {
+    // Güvenli Origin Kontrolü:
+    // Sadece localhost (geliştirme) veya vercel uygulamalarından gelenleri kabul et
+    // Eğer kendi domainin varsa, (örn: https://www.kittyfinger.com) buraya includes ile ekleyebilirsin.
+    const isAllowedOrigin =
+        origin.startsWith("http://localhost:") ||
+        origin.endsWith("kitty-finger.vercel.app") ||
+        origin.endsWith("kitty-type.vercel.app"); // GitHub repo adını da kapsayalım her ihtimale karşı
+
+    if (!isAllowedOrigin) {
         return NextResponse.json({ error: "Forbidden: Invalid Origin" }, { status: 403 });
     }
 
