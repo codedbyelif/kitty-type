@@ -36,7 +36,7 @@ export default function Leaderboard() {
                     .from("leaderboard_alltime")
                     .select("*")
                     .order("wpm", { ascending: false })
-                    .limit(10);
+                    .limit(difficulty === "all" ? 100 : 10);
 
                 if (difficulty !== "all") query = query.eq("difficulty", difficulty);
 
@@ -45,7 +45,16 @@ export default function Leaderboard() {
                 if (error || !data) {
                     setScores([]);
                 } else {
-                    setScores(data as LeaderboardEntry[]);
+                    let finalData = data as LeaderboardEntry[];
+                    if (difficulty === "all") {
+                        const seen = new Set();
+                        finalData = finalData.filter((entry) => {
+                            if (seen.has(entry.user_id)) return false;
+                            seen.add(entry.user_id);
+                            return true;
+                        }).slice(0, 10);
+                    }
+                    setScores(finalData);
                 }
             } catch {
                 setScores([]);
