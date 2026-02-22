@@ -5,9 +5,34 @@ type TestResultInsert = Database["public"]["Tables"]["test_results"]["Insert"];
 
 // ── Save a test result (client-side, user must be logged in) ──
 export async function saveTestResult(data: Omit<TestResultInsert, "user_id">) {
-    // Basic bot prevention: Ignore any score 200 WPM or higher
+    // Advanced bot prevention:
+    // 1. Hard cap at 200 WPM
     if (data.wpm >= 200) {
         return { error: "Score rejected: WPM too high (bot protection)" };
+    }
+
+    // 2. Mathematical validation: Is the WPM even physically possible based on the duration and chars?
+    // Formula for WPM standard is: (total_correct_chars / 5) / (duration_in_seconds / 60)
+    const expectedWpm = Math.round((data.correct_chars / 5) / (data.duration / 60));
+
+    // Allow a small margin of error (e.g. +/- 2 WPM) for floating point/rounding differences
+    if (Math.abs(data.wpm - expectedWpm) > 2) {
+        return { error: "Score rejected: Math validation failed (bot protection)" };
+    }
+
+    // 3. Perfect accuracy with 0 correct chars (submitting an empty test as 100% accuracy)
+    if (data.correct_chars === 0 && data.accuracy > 0) {
+        return { error: "Score rejected: Invalid accuracy (bot protection)" };
+    }
+
+    // 4. Over 100% accuracy
+    if (data.accuracy > 100 || data.accuracy < 0) {
+        return { error: "Score rejected: Invalid accuracy range (bot protection)" };
+    }
+
+    // 5. Total chars mismatch
+    if (data.correct_chars > data.total_chars) {
+        return { error: "Score rejected: Correct chars cannot exceed total chars (bot protection)" };
     }
 
     const supabase = createClient();
