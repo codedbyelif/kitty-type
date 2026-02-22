@@ -5,6 +5,11 @@ type TestResultInsert = Database["public"]["Tables"]["test_results"]["Insert"];
 
 // ── Save a test result (client-side, user must be logged in) ──
 export async function saveTestResult(data: Omit<TestResultInsert, "user_id">) {
+    // Basic bot prevention: Ignore any score 200 WPM or higher
+    if (data.wpm >= 200) {
+        return { error: "Score rejected: WPM too high (bot protection)" };
+    }
+
     const supabase = createClient();
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) return { error: "Not authenticated" };
