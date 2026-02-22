@@ -63,6 +63,14 @@ export default function Results({ wpm, accuracy, correctChars, totalChars, time,
                         <span key={i} className={styles.confettiPiece} style={{ "--i": i } as React.CSSProperties} />
                     ))}
                 </div>
+                {/* Rain effect for wpm < 85 */}
+                {wpm < 85 && (
+                    <div className={styles.rainContainer}>
+                        {Array.from({ length: 50 }).map((_, i) => (
+                            <span key={`rain-${i}`} className={styles.rainDrop} style={{ "--i": i, "--x": Math.random() } as React.CSSProperties} />
+                        ))}
+                    </div>
+                )}
 
                 <div className={styles.kittyTop}>
                     {wpm >= 85 ? (
