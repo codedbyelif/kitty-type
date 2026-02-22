@@ -12,7 +12,7 @@ export const translations = {
         nav_signup: "Sign up",
 
         // Hero
-        hero_badge: "Hello Kitty Approved",
+        hero_badge: "Welcome to KittyType!",
         hero_title: "How Fast Are",
         hero_title_highlight: " Your Paws?",
         hero_subtitle: "The cutest typing speed test in the universe. Measure your WPM, beat your record, and share your results with friends!",
@@ -115,7 +115,7 @@ export const translations = {
         nav_signup: "Kayıt Ol",
 
         // Hero
-        hero_badge: "Hello Kitty Onaylı",
+        hero_badge: "KittyType'a Hoş Geldin!",
         hero_title: "Patilerin",
         hero_title_highlight: " Ne Kadar Hızlı?",
         hero_subtitle: "Evrendeki en tatlı yazma hızı testi. WPM'ini ölç, rekorunu kır ve sonuçlarını arkadaşlarınla paylaş!",
