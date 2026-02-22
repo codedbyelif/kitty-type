@@ -46,14 +46,14 @@ export default function Navbar() {
                 </button>
 
                 <ul className={`${styles.links} ${menuOpen ? styles.linksOpen : ""}`}>
-                    <li>
-                        <button className={styles.langToggle} onClick={() => setLang(lang === 'en' ? 'tr' : 'en')} aria-label="Toggle Language">
-                            {lang === "en" ? "TR" : "EN"}
-                        </button>
-                    </li>
                     <li><Link href="#test" className={styles.link} onClick={() => setMenuOpen(false)}>{t("nav_type_test")}</Link></li>
                     <li><Link href="#leaderboard" className={styles.link} onClick={() => setMenuOpen(false)}>{t("nav_leaderboard")}</Link></li>
-                    <li><Link href="#about" className={styles.link} onClick={() => setMenuOpen(false)}>{t("nav_about")}</Link></li>
+                    <li className={styles.aboutGroup}>
+                        <Link href="#about" className={styles.link} onClick={() => setMenuOpen(false)}>{t("nav_about")}</Link>
+                        <button className={styles.langToggle} onClick={() => setLang(lang === 'en' ? 'tr' : 'en')} aria-label="Toggle Language" title="Switch Language">
+                            {lang === "en" ? "🇹🇷 TR" : "🇬🇧 EN"}
+                        </button>
+                    </li>
 
                     {user ? (
                         <li ref={dropdownRef} className={styles.userMenu}>

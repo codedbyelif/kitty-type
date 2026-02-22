@@ -262,19 +262,29 @@
 }
 
 .langToggle {
-    background: var(--pink-100);
-    color: var(--pink-700);
-    border: 1.5px solid var(--pink-300);
-    border-radius: var(--radius-sm);
-    padding: 6px 10px;
+    background: transparent;
+    color: var(--pink-500);
+    border: none;
+    padding: 4px 8px;
     font-family: var(--font-body);
     font-weight: 800;
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     cursor: pointer;
     transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.8;
 }
 
 .langToggle:hover {
-    background: var(--pink-200);
-    transform: scale(1.05);
+    opacity: 1;
+    transform: translateY(-1px);
+    color: var(--pink-600);
+}
+
+.aboutGroup {
+    display: flex;
+    align-items: center;
+    gap: 16px;
 }
