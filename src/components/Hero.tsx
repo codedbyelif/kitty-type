@@ -27,12 +27,12 @@ export default function Hero() {
                 </p>
                 <div className={styles.stats}>
                     <div className={styles.stat}>
-                        <strong>12,000+</strong>
+                        <strong>120+</strong>
                         <span>{t("hero_tests_taken")}</span>
                     </div>
                     <div className={styles.divider} />
                     <div className={styles.stat}>
-                        <strong>250 WPM</strong>
+                        <strong>154 WPM</strong>
                         <span>{t("hero_top_record")}</span>
                     </div>
                     <div className={styles.divider} />
